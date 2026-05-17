@@ -591,6 +591,52 @@
     opacity: 0.35;
   }
 
+  /* Orbit animation for AI icon */
+  @keyframes orbit-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .orbit-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--color-accent);
+    opacity: 0.5;
+    animation: orbit-spin 10s linear infinite;
+  }
+
+  .orbit-ring-1 {
+    width: 140%;
+    height: 140%;
+    border-top-color: transparent;
+    animation-duration: 4s;
+    animation-direction: reverse;
+  }
+
+  .orbit-ring-2 {
+    width: 180%;
+    height: 180%;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    opacity: 0.3;
+    animation-duration: 8s;
+  }
+
+  .orbit-ring-3 {
+    width: 220%;
+    height: 220%;
+    border-style: dashed;
+    opacity: 0.2;
+    animation-duration: 12s;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .hud-shimmer,
     .hud-reticle::before,

@@ -99,11 +99,20 @@ export function ChatArea() {
       >
         {isEmpty ? (
           <div className="flex flex-col items-center justify-center h-full px-4">
-            <div
-              className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
-              style={{ background: 'var(--color-accent-subtle)', color: 'var(--color-accent)' }}
-            >
-              <Sparkles size={24} />
+            <div className="orbit-container mb-6 mt-4">
+              <div className="orbit-ring orbit-ring-1"></div>
+              <div className="orbit-ring orbit-ring-2"></div>
+              <div className="orbit-ring orbit-ring-3"></div>
+              <div
+                className="w-16 h-16 rounded-full flex items-center justify-center relative z-10"
+                style={{
+                  background: 'var(--color-accent-subtle)',
+                  color: 'var(--color-accent)',
+                  boxShadow: '0 0 20px var(--color-accent-glow)'
+                }}
+              >
+                <Sparkles size={32} />
+              </div>
             </div>
             <h2 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text)' }}>
               {getGreeting()}
