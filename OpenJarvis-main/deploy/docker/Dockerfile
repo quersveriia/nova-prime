@@ -14,12 +14,13 @@ WORKDIR /app
 COPY pyproject.toml README.md ./
 COPY src/ src/
 COPY scripts/ scripts/
+COPY configs/ configs/
 
 # Copy built frontend into the server static directory
 COPY --from=frontend /src/openjarvis/server/static src/openjarvis/server/static/
 
 RUN pip install --no-cache-dir uv && \
-    uv pip install --system ".[server]"
+    uv pip install --system ".[server,inference-cloud]"
 
 # Stage 3: Runtime
 FROM python:3.12-slim-bookworm
@@ -27,6 +28,8 @@ FROM python:3.12-slim-bookworm
 COPY --from=builder /usr/local /usr/local
 COPY --from=builder /app /app
 WORKDIR /app
+
+ENV OPENJARVIS_CONFIG=/app/configs/openjarvis/config.toml
 
 EXPOSE 8000
 
