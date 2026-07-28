@@ -1,12 +1,9 @@
 # OpenJarvis configuration — Render deployment (Gemini cloud engine)
 
-# ═══════════════════════════════════════════════════════════════
-# PILLAR 1: Intelligence — The Model
-# ═══════════════════════════════════════════════════════════════
 [intelligence]
-default_model = "gemini-2.5-flash"        # Google Gemini free-tier model
+default_model = "gemini-2.5-flash"
 fallback_model = ""
-preferred_engine = "cloud"                # Use cloud API, not local GPU
+preferred_engine = "cloud"
 provider = "google"
 quantization = "none"
 temperature = 0.7
@@ -15,19 +12,13 @@ top_p = 0.9
 top_k = 40
 repetition_penalty = 1.0
 
-# ═══════════════════════════════════════════════════════════════
-# PILLAR 2: Agent — The Agentic Harness
-# ═══════════════════════════════════════════════════════════════
 [agent]
-default_agent = "simple"                  # Lightweight, no heavy tool loop
+default_agent = "simple"
 max_turns = 10
 tools = "web_search,calculator,think"
 objective = "Answer questions accurately using available tools"
 context_from_memory = false
 
-# ═══════════════════════════════════════════════════════════════
-# PILLAR 3: Tools — MCP Interface
-# ═══════════════════════════════════════════════════════════════
 [tools.storage]
 default_backend = "sqlite"
 db_path = "~/.openjarvis/memory.db"
@@ -35,15 +26,9 @@ db_path = "~/.openjarvis/memory.db"
 [tools.mcp]
 enabled = true
 
-# ═══════════════════════════════════════════════════════════════
-# PILLAR 4: Engine — The Inference Runtime
-# ═══════════════════════════════════════════════════════════════
 [engine]
-default = "cloud"                         # Changed from "vllm"
+default = "cloud"
 
-# ═══════════════════════════════════════════════════════════════
-# PILLAR 5: Learning — Improvement Methodologies
-# ═══════════════════════════════════════════════════════════════
 [learning]
 enabled = false
 
@@ -62,11 +47,8 @@ latency_weight = 0.2
 cost_weight = 0.1
 efficiency_weight = 0.1
 
-# ═══════════════════════════════════════════════════════════════
-# Supporting config
-# ═══════════════════════════════════════════════════════════════
 [telemetry]
-enabled = false                           # No GPU on Render, disable
+enabled = false
 db_path = "~/.openjarvis/telemetry.db"
 
 [traces]
