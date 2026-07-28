@@ -260,13 +260,15 @@ def create_app(
         logger.debug("Security middleware init skipped: %s", exc)
 
     # API key authentication middleware
-    if api_key:
-        try:
-            from openjarvis.server.auth_middleware import AuthMiddleware
+import os as _os_auth
 
-            app.add_middleware(AuthMiddleware, api_key=api_key)
-        except Exception as exc:
-            logger.debug("Auth middleware init skipped: %s", exc)
+if api_key and _os_auth.environ.get("OPENJARVIS_ENFORCE_AUTH", "1") != "0":
+    try:
+        from openjarvis.server.auth_middleware import AuthMiddleware
+
+        app.add_middleware(AuthMiddleware, api_key=api_key)
+    except Exception as exc:
+        logger.debug("Auth middleware init skipped: %s", exc)
 
     # Mount webhook routes (always — SendBlue may be configured dynamically)
     if webhook_config:
