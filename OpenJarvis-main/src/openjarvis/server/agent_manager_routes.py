@@ -635,7 +635,7 @@ async def _stream_managed_agent(
 
     agent_id = agent_record["id"]
     config = agent_record.get("config", {})
-    model = config.get("model", getattr(engine, "_model", ""))
+    model = config.get("model")or getattr(app_state,"model", "")or getattr(engine, "_model", "")
     system_prompt = config.get("system_prompt")
     temperature = config.get("temperature", 0.7)
     max_tokens = config.get("max_tokens", 1024)
